@@ -23,6 +23,9 @@ def main() -> int:
     if not text or len(text) > 200:
         print("entry line must be 1-200 characters", file=sys.stderr)
         return 1
+    if "\n" in text or "\r" in text:
+        print("entry line must be a single line", file=sys.stderr)
+        return 1
     with open(path, "w", encoding="utf-8") as f:
         f.write(text + "\n")
     return 0
